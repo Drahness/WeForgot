@@ -2,12 +2,35 @@
     <string name="app_name">WeForgot</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Anonymous</string>
+    <string name="nav_header_subtitle">Anonymous</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_items">Items</string>
+    <string name="menu_reminders">Reminders</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync with cloud</string>
+    <string name="attachment_title">Authenticate</string>
+    <string name="attachment_summary_on">You\'re authenticated and you can sync with cloud.
+    </string>
+    <string name="attachment_summary_off">Authenticate to be able to sync in the cloud</string>
+    <string name="default_txt_starttime">TextView</string>
+    <string name="default_string_button">Button</string>
+    <string name="default_string_endhour">TextView</string>
+    <string name="default_string_item_name">TextView</string>
+    <string name="item_picture">Item picture</string>
+    <string name="sync_pictures">Sync pictures</string>
+    <string name="attachment_pictures_on">You\'re syncing pictures</string>
+    <string name="attachment_pictures_off">You do not sync pictures.</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

@@ -9,17 +9,31 @@
         android:id="@+id/nav_home"
         android:name="self.joanciscar.myapplication.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_reminders"
+            app:destination="@id/nav_reminders" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_items"
+            app:destination="@id/nav_items" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_items"
         android:name="self.joanciscar.myapplication.ui.items.ItemsFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="@string/menu_items"
+        tools:layout="@layout/fragment_items" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="self.joanciscar.myapplication.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_reminders"
+        android:name="self.joanciscar.myapplication.ui.reminders.RemindersFragment"
+        android:label="@string/menu_reminders"
+        tools:layout="@layout/fragment_alarms" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="self.joanciscar.myapplication.ui.settings.SettingsFragment"
+        android:label="@string/menu_reminders"
+        tools:layout="@layout/settings_activity"
+        />
 </navigation>

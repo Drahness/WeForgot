@@ -25,12 +25,13 @@
     </string>
     <string name="attachment_summary_off">Authenticate to be able to sync in the cloud</string>
     <string name="default_txt_starttime">TextView</string>
-    <string name="default_string_button">Button</string>
-    <string name="default_string_endhour">TextView</string>
-    <string name="default_string_item_name">TextView</string>
+    <string name="default_string_button">Edit</string>
+    <string name="default_string_endhour">end</string>
+    <string name="default_string_item_name">item_name</string>
     <string name="item_picture">Item picture</string>
     <string name="sync_pictures">Sync pictures</string>
     <string name="attachment_pictures_on">You\'re syncing pictures</string>
     <string name="attachment_pictures_off">You do not sync pictures.</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="default_web_client_id">AIzaSyDfUAs8lK6J0GVs9D0YKOWFb3LcaKnwgeM</string>
 </resources>

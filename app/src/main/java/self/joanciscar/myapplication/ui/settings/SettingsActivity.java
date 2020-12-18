@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 import self.joanciscar.myapplication.R;
-
+@Deprecated
 public class SettingsActivity extends AppCompatActivity {
 
     @Override

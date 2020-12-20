@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="/mnt/B03CA4F93CA4BC2A/Users/Catalan Renegado/AndroidStudioProjects/WeForgot" />
-            <option value="/mnt/B03CA4F93CA4BC2A/Users/Catalan Renegado/AndroidStudioProjects/WeForgot/app" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

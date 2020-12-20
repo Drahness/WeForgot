@@ -25,12 +25,12 @@
             app:summaryOn="@string/attachment_summary_on"
             app:title="@string/attachment_title" />
         <SwitchPreferenceCompat
-            app:dependency="autheticated"
+            app:dependency="authenticated"
             app:key="sync"
             app:title="@string/sync_title" />
         <SwitchPreferenceCompat
             app:key="sync_pictures"
-            app:dependency="autheticated"
+            app:dependency="authenticated"
             app:summaryOff="@string/attachment_pictures_on"
             app:summaryOn="@string/attachment_pictures_off"
             app:title="@string/sync_pictures" />

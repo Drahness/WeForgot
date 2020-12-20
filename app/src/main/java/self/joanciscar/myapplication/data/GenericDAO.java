@@ -22,16 +22,16 @@ public interface GenericDAO<T,K> {
     default int deleteAll(List<T> entities) {
         int i = 0;
         for(int x = 0; x < entities.size(); x++) {
-            i += delete(entities.get(x));
+            this.delete(entities.get(x));
         }
         return i;
     }
-    default int insertAll(List<T> entities) {
+    @Deprecated
+    default void insertAll(List<T> entities) {
         int i = 0;
         for(int x = 0; x < entities.size(); x++) {
-            i += insert(entities.get(x));
+            this.insert(entities.get(x));
         }
-        return i;
     }
     default List<T> getDetails(List<K> keys) {
         List<T> list = new ArrayList<>();
@@ -42,6 +42,10 @@ public interface GenericDAO<T,K> {
             }
         }
         return list;
+    }
+
+    default boolean exists(K key) {
+        return this.getDetails(key) != null;
     }
     List<T> getCachedEntities();
     Map<K,Integer> getCachedPairKeyIndexMap();

@@ -10,20 +10,19 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
+import self.joanciscar.myapplication.data.Entity;
 import self.joanciscar.myapplication.data.GenericDAO;
-import self.joanciscar.myapplication.data.Item;
-import self.joanciscar.myapplication.data.Reminder;
 import self.joanciscar.myapplication.utilities.Utils;
 
-public abstract class AbstractViewModel<Type,DAO extends GenericDAO<Type,?>> extends AndroidViewModel {
+public abstract class AbstractViewModel<Type extends Entity<?> ,DAO extends GenericDAO<Type,?>> extends AndroidViewModel {
     MutableLiveData<List<Type>> mutableValues;
     DAO dao;
     public AbstractViewModel(@NonNull Application application) {
         super(application);
-        dao = getDao(application);
+        dao = getDao(application,this);
     }
 
-    public abstract DAO getDao(Application app);
+    public abstract DAO getDao(Application app, AbstractViewModel<Type,DAO> vm);
 
     public LiveData<List<Type>> getLiveData() {
         if(mutableValues == null) {
@@ -39,16 +38,20 @@ public abstract class AbstractViewModel<Type,DAO extends GenericDAO<Type,?>> ext
             @Override
             public void run() {
                 super.run();
-                List<Type> list = dao.getAllDetails(); // even with a thread, this is costly
-                AbstractViewModel.this.setReminders(list);
             }
         };
-        t.start();
+        List<Type> list = dao.getAllDetails(); // even with a thread, this is costly
+        AbstractViewModel.this.setValues(list);
+        //t.start();
         /*List<Type> list = dao.getAllDetails(); // this is costly
         this.setReminders(list);*/
     }
 
-    public void setReminders(List<Type> list) {
+    /**
+     * Its better to use add or remove.
+     * @param list
+     */
+    public void setValues(List<Type> list) {
         if(Utils.isUiThread()) {
             // Current Thread is Main Thread.
             mutableValues.setValue(list);
@@ -67,11 +70,12 @@ public abstract class AbstractViewModel<Type,DAO extends GenericDAO<Type,?>> ext
             clonedReminders.addAll(reminders);
         }
         boolean b = clonedReminders.add(rem);
+        dao.insert(rem);
         mutableValues.setValue(clonedReminders);
         return b;
     }
 
-    public boolean remove(Type rem) {
+    public void remove(Type rem) {
         List<Type> reminders = mutableValues.getValue();
         List<Type> clonedReminders;
         if(reminders == null) {
@@ -79,11 +83,37 @@ public abstract class AbstractViewModel<Type,DAO extends GenericDAO<Type,?>> ext
         }
         else {
             clonedReminders = new ArrayList<>(reminders.size());
-            clonedReminders.addAll(reminders);
+            for (Type item: reminders) {
+                if(!item.getId().equals(rem.getId())) { // Check for the identity
+                    clonedReminders.add(item);
+                }
+            }
         }
-        boolean b = clonedReminders.remove(rem);
-        this.setReminders(clonedReminders);
-        return b;
+        dao.delete(rem);
+        this.setValues(clonedReminders);
+    }
+    public boolean update(Type old, Type updated) {
+        List<Type> reminders = mutableValues.getValue();
+        List<Type> clonedReminders;
+        if(reminders == null) {
+            clonedReminders = new ArrayList<>();
+        }
+        else {
+            clonedReminders = new ArrayList<>(reminders.size());
+            for (Type item: reminders) {
+                if(!item.getId().equals(old.getId())) { // Check for the identity
+                    clonedReminders.add(item);
+                }
+                else {
+                    clonedReminders.add(updated);
+                }
+            }
+            //clonedReminders.remove(old);
+            //clonedReminders.add(updated);
+        }
+        dao.update(updated);
+        this.setValues(clonedReminders);
+        return true;
     }
 
 }

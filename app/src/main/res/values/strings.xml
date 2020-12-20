@@ -33,5 +33,9 @@
     <string name="attachment_pictures_on">You\'re syncing pictures</string>
     <string name="attachment_pictures_off">You do not sync pictures.</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="default_web_client_id">AIzaSyDfUAs8lK6J0GVs9D0YKOWFb3LcaKnwgeM</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">name</string>
+    <string name="nameTextView">Name:</string>
+    <!-- <string name="default_web_client_id">AIzaSyDfUAs8lK6J0GVs9D0YKOWFb3LcaKnwgeM</string> -->
 </resources>

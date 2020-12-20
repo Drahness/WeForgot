@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import self.joanciscar.myapplication.data.Item;
-import self.joanciscar.myapplication.data.ItemDAO;
-import self.joanciscar.myapplication.data.Reminder;
-import self.joanciscar.myapplication.data.ReminderDAO;
+import self.joanciscar.myapplication.ui.items.Item;
+import self.joanciscar.myapplication.ui.items.ItemDAO;
+import self.joanciscar.myapplication.ui.reminders.Reminder;
+import self.joanciscar.myapplication.ui.reminders.ReminderDAO;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ExampleInstrumentedTest {
+public class DAOInstrumentedTest {
     static ItemDAO dao;
     static ReminderDAO dao2;
     static List<Item> instances = new ArrayList<>();

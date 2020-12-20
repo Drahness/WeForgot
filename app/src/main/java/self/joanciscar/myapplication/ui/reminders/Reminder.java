@@ -1,16 +1,16 @@
-package self.joanciscar.myapplication.data;
-
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
+package self.joanciscar.myapplication.ui.reminders;
 
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class Reminder {
-    private long id;
+import self.joanciscar.myapplication.data.Entity;
+import self.joanciscar.myapplication.ui.items.Item;
+
+public class Reminder extends Entity<Long> {
+    private Long id;
     private int importance;
     private List<Item> items = new ArrayList<>();
     private Time endTime; // Only for the notification IMPORTANT. The others ignore these att
@@ -29,7 +29,7 @@ public class Reminder {
         return endTime;
     }
 
-    public Reminder(int id, int importance, List<Item> items, Time endTime, int graceTime, Time time) {
+    public Reminder(Long id, int importance, List<Item> items, Time endTime, int graceTime, Time time) {
         this.id = id;
         this.importance = importance;
         this.items = items;
@@ -58,11 +58,11 @@ public class Reminder {
         this.graceTime = graceTime;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -134,12 +134,32 @@ public class Reminder {
     }
     @Override
     public int hashCode() {
-        int result = (int) id;
+        int result = id != null ? id.intValue() : 0;
         result = 31 * result + importance;
         result = 31 * result + (items != null ? items.hashCode() : 0);
         result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         result = 31 * result + graceTime;
         result = 31 * result + time.hashCode();
         return result;
+    }
+    public Map<String,Object> getMap() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("endtime",this.endTime);
+        map.put("time",this.time);
+        map.put("graceTime",this.graceTime);
+        map.put("activated",this.activated);
+        //TODO map.put("items",this.items);
+        map.put("importance",importance);
+        map.put("id",id);
+        return map;
+    }
+    public void fromMap(Map<String,Object> map) {
+        endTime = (Time) map.get("endtime");
+        this.setTime((String) map.get("time"));
+        graceTime = (int) map.get("graceTime");
+        activated = (boolean) map.get("activated");
+        // TODO items = (List<Item>) map.get("items");
+        importance = (int) map.get("importance");
+        id = (long) map.get("id");
     }
 }

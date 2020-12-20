@@ -1,4 +1,4 @@
-package self.joanciscar.myapplication.data;
+package self.joanciscar.myapplication.ui.reminders;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,11 +6,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.lifecycle.ViewModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import self.joanciscar.myapplication.data.DBController;
+import self.joanciscar.myapplication.data.GenericDAO;
+import self.joanciscar.myapplication.ui.items.Item;
+import self.joanciscar.myapplication.ui.items.ItemDAO;
 import self.joanciscar.myapplication.utilities.DBUtils;
 
 public class ReminderDAO implements GenericDAO<Reminder, Long> {
@@ -18,10 +24,17 @@ public class ReminderDAO implements GenericDAO<Reminder, Long> {
     private static final HashMap<Long,Integer> keyCache = new HashMap<>(); // Key, Index in cache
     private final SQLiteOpenHelper helper;
     private final Context context;
+    private ViewModel vm;
 
     public ReminderDAO(Context context) {
         helper = new DBController(context);
         this.context = context;
+    }
+
+    public ReminderDAO(Context context, ViewModel vm) {
+        helper = new DBController(context);
+        this.context = context;
+        this.vm = vm;
     }
 
     @Override
@@ -51,6 +64,7 @@ public class ReminderDAO implements GenericDAO<Reminder, Long> {
     @Override
     public List<Reminder> getAllDetails() {
         List<Reminder> items = new ArrayList<>();
+
         SQLiteDatabase rdb = helper.getReadableDatabase();
         Cursor c = rdb.rawQuery("SELECT ID,HOUR,ENDHOUR,IMPORTANCE,GRACETIME,ACTIVATED FROM REMINDERS",null);
         while (c.moveToNext()) {
@@ -128,7 +142,7 @@ public class ReminderDAO implements GenericDAO<Reminder, Long> {
         DBUtils.bindObject(statement,5,entity.isActivated());
         GenericDAO<Item,Long> dao = new ItemDAO(context);
         long i = statement.executeInsert();
-        entity.setId((int) i);
+        entity.setId(i);
         for(Item item: entity.getItems()) {
             SQLiteStatement deleteStatement = wdb.compileStatement("DELETE FROM ITEMS_REMINDERS WHERE ID_REMINDER = ?");
             deleteStatement.executeUpdateDelete();

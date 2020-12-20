@@ -1,0 +1,25 @@
+{
+  "item" : {
+    "useruuid" : {
+      "item1" : {
+        "foto" : "fotoincloud if any",
+        "id" : 0,
+        "name" : "name"
+      }
+    }
+  },
+  "reminder" : {
+    "useruuid" : {
+      "reminder1" : {
+        "activated" : "true or false",
+        "endtime" : "endtime in 00:00",
+        "id" : 0,
+        "importance" : 0,
+        "items" : {
+          "item1" : 0
+        },
+        "time" : "time in 00:00"
+      }
+    }
+  }
+}

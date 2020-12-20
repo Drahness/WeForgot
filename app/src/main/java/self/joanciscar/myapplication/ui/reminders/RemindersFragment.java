@@ -5,23 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.List;
 
 import self.joanciscar.myapplication.R;
-import self.joanciscar.myapplication.data.Reminder;
 
 public class RemindersFragment extends Fragment {
     private List<Reminder> mReminders;
@@ -110,6 +108,13 @@ public class RemindersFragment extends Fragment {
                     result.dispatchUpdatesTo(mRemindersAdapter);
                     mReminders = reminders;
                 }
+            }
+        });
+        FloatingActionButton add_fab = root.findViewById(R.id.add_reminder);
+        add_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         return root;
